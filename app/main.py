@@ -1,6 +1,6 @@
 from fastapi import FastAPI, status, HTTPException
 from .database import Base, engine
-
+from .routers import register_users, login_user
 
 
 Base.metadata.create_all(bind=engine)
@@ -14,3 +14,7 @@ def health():
         detail="API is healthy and running correctly.",
         headers={"Iron_Ready Healthcheack": "healthy"}
     )
+
+
+app.include_router(register_users.router)
+app.include_router(login_user.router)
