@@ -1,6 +1,6 @@
 from fastapi import FastAPI, status, HTTPException
 from .database import Base, engine
-from .routers import register_users, login_user
+from .routers import register_users, login_user, admin_user
 
 
 Base.metadata.create_all(bind=engine)
@@ -18,3 +18,4 @@ def health():
 
 app.include_router(register_users.router)
 app.include_router(login_user.router)
+app.include_router(admin_user.router)

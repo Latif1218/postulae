@@ -50,7 +50,7 @@ class UserUpdate(BaseModel):
 
 
 class UserAdminListItem(BaseModel):
-    id: str
+    id: UUID
     full_name: Optional[str]
     email: str
     plan: str
@@ -63,7 +63,7 @@ class UserAdminListItem(BaseModel):
 
 
 class TutorStats(BaseModel):
-    id: str
+    id: UUID
     full_name: Optional[str]
     tasks_assigned: int
     missions_completed: int
