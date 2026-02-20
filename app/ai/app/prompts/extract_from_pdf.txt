@@ -1,0 +1,14 @@
+Extract all text from the following PDF resume.
+
+CRITICAL REQUIREMENTS:
+- Get the COMPLETE text from the PDF
+- Do NOT summarize or paraphrase
+- Preserve all details, dates, names, and information
+- Include ALL sections: education, experience, skills, languages, activities, etc.
+
+Respond with the raw text only in this JSON format:
+{
+    "raw_text": "<complete extracted text here>"
+}
+
+Resume is attached.

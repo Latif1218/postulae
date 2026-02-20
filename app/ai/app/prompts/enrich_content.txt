@@ -1,0 +1,40 @@
+CONTENT ENRICHMENT MODE - FILL THE PAGE
+
+CRITICAL: The current resume has insufficient content density.
+Current metrics: {fill_percentage}% page fill, {char_count} characters.
+TARGET: 85-90% page fill, minimum 2200 characters.
+
+Your task: Generate comprehensive, detailed content from the original CV to fill one A4 page completely.
+
+ENRICHMENT GUIDELINES:
+1. WORK EXPERIENCE:
+   - Expand to 5-7 detailed bullet points per role
+   - Include specific achievements with quantifiable metrics
+   - Add context: team size, budget managed, tools used, stakeholders involved
+   - Highlight deliverables and measurable outcomes
+   - Mention methodologies, frameworks, and technologies
+
+2. EDUCATION:
+   - Add relevant coursework (4-6 courses per degree)
+   - Include honors, awards, distinctions
+   - Mention significant projects or thesis topics
+   - Add GPA or class rank if strong
+
+3. SKILLS & LANGUAGES:
+   - Expand IT skills with proficiency levels
+   - Add more languages with CEFR levels or test scores
+   - Include financial databases and specialized tools
+
+4. ACTIVITIES & INTERESTS:
+   - Expand with specific roles, achievements, duration
+   - Quantify impact where possible (team size, events organized, etc.)
+
+IMPORTANT CONSTRAINTS:
+- NEVER invent facts or experiences
+- Only expand on information that can be reasonably inferred from the original CV
+- Maintain professional, sober tone for finance/consulting roles
+- All additions must be credible and defensible
+- Keep date ranges in 'Mon YYYY-Mon YYYY' format
+- Keep locations as 'City, Country' using English names
+
+Extract MAXIMUM detail from the original CV and present it in a comprehensive format.

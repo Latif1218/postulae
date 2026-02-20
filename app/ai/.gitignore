@@ -1,0 +1,99 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+pip-wheel-metadata/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual Environment
+venv/
+ENV/
+env/
+.venv
+
+# Environment Variables
+.env
+.env.local
+.env.*.local
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# PyCharm
+.idea/
+
+# Test Coverage
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+.pytest_cache/
+
+# mypy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Output Files (Generated CVs)
+output/*.pdf
+output/*.docx
+output/*.json
+output/archive_old_outputs/
+
+# Exclude reference outputs (keep these for testing)
+!output/fayed_calibrated_fr.pdf
+!output/fayed_calibrated_fr.docx
+!output/jinfeng_hu_fr.pdf
+!output/jinfeng_hu_fr.docx
+
+# Input Test Files (Large PDFs - can be reuploaded if needed)
+# Uncomment to exclude from repo:
+# input/*.pdf
+
+# Temporary Files
+*.tmp
+*.temp
+*.log
+
+# OS
+Thumbs.db
+.DS_Store
+
+# Claude Code
+.claude/
+
+# Demo interface (local testing only)
+demo/

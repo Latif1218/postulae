@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>{{ name }} — Resume</title>
+  <style>
+    @page {
+      size: A4;
+      margin: 11mm;
+    }
+
+    body {
+      font-family: "Times New Roman", "Georgia", serif;
+      font-size: 9.5pt;
+      line-height: 1.1;
+      margin: 0;
+      padding: 0;
+      color: #000;
+    }
+
+    /* Reset */
+    h1, h2, h3, h4, h5, h6, p, div, ul, li {
+      margin: 0;
+      padding: 0;
+    }
+
+    /* HEADER */
+    .header {
+      text-align: center;
+      margin-bottom: 5mm;
+    }
+
+    .name {
+      font-size: 16pt;
+      font-weight: bold;
+      margin-bottom: 2px;
+      line-height: 1.0;
+    }
+
+    .contact {
+      font-size: 9pt;
+      line-height: 1.0;
+    }
+
+    .contact a {
+      color: #0066cc;
+      text-decoration: none;
+    }
+
+    /* SECTIONS */
+    .section {
+      margin-top: 6.5mm;
+    }
+
+    .section:first-of-type {
+      margin-top: 0;
+    }
+
+    .hr {
+      width: 100%;
+      height: 1px;
+      background: #000;
+      border: none;
+      margin: 0 0 1mm 0;
+    }
+
+    .section-title {
+      font-size: 11pt;
+      font-weight: bold;
+      text-transform: uppercase;
+      margin-bottom: 1mm;
+      line-height: 1.0;
+    }
+
+    /* TABLES */
+    .resume-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 1mm;
+    }
+
+    .resume-table td {
+      vertical-align: top;
+      padding: 0;
+      border: none;
+    }
+
+    /* DATE COLUMN */
+    .date-cell {
+      width: 12%;
+      font-size: 9pt;
+      line-height: 1.1;
+    }
+
+    .duration {
+      font-size: 9pt;
+      font-style: italic;
+      margin-top: 1px;
+      line-height: 1.0;
+    }
+
+    /* CONTENT COLUMN */
+    .content-cell {
+      width: 70%;
+      padding: 0 3px;
+    }
+
+    /* LOCATION COLUMN */
+    .location-cell {
+      width: 18%;
+      text-align: right;
+      font-size: 9pt;
+      line-height: 1.1;
+    }
+
+    /* INSTITUTIONS & COMPANIES */
+    .inst,
+    .company {
+      font-size: 10pt;
+      font-weight: bold;
+      line-height: 0.7;
+      text-transform: uppercase;
+    }
+
+    /* DEGREES & ROLES */
+    .degree,
+    .role {
+      font-size: 10pt;
+      font-style: italic;
+      font-weight: bold;
+      line-height: 0.7;
+      margin-top: 2px;
+    }
+
+    /* EDUCATION DETAILS */
+    .education-details {
+      font-size: 9pt;
+      margin-top: 1.5mm;
+      line-height: 1.2;
+    }
+
+    /* BULLETS */
+    .bullets {
+      margin: 3.5mm 0 0 4mm;
+      padding: 0;
+      list-style-type: disc;
+      font-size: 9.5pt;
+      line-height: 1.2;
+    }
+
+    .bullets li {
+      margin-bottom: 1mm;
+    }
+
+    /* SKILLS */
+    .skills-section {
+      margin-top: 0;
+      margin-bottom: 2mm;
+    }
+
+    .skills-table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .skills-table td {
+      vertical-align: top;
+      padding: 0;
+    }
+
+    .skills-spacer {
+      width: 12%;
+    }
+
+    .skills-content {
+      width: 88%;
+      padding: 0 3px;
+    }
+
+    .skills-list {
+      margin: 0 0 0 4mm;
+      padding: 0;
+      list-style-type: disc;
+      font-size: 9.5pt;
+      line-height: 1.2;
+    }
+
+    .skills-list li {
+      margin-bottom: 1mm;
+    }
+
+    .skills-label {
+      font-weight: bold;
+    }
+
+    /* ACTIVITIES */
+    .interests-section {
+      margin-top: 0;
+    }
+
+    .interests-list {
+      margin: 0 0 0 4mm;
+      padding: 0;
+      list-style-type: disc;
+      font-size: 9.5pt;
+      line-height: 1.2;
+    }
+
+    .interests-list li {
+      margin-bottom: 1mm;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="name">{{ name }}</div>
+    <div class="contact">
+      {% set contact_parts = [] %}
+      {% if address %}{% set _ = contact_parts.append(address) %}{% endif %}
+      {% if phone %}{% set _ = contact_parts.append(phone) %}{% endif %}
+      {% if email %}{% set _ = contact_parts.append('<a href="mailto:' + email + '">' + email + '</a>') %}{% endif %}
+      {{ contact_parts | join(" • ") }}
+    </div>
+  </div>
+
+  <!-- EDUCATION -->
+  <div class="section">
+    <div class="section-title">FORMATION</div>
+    <hr class="hr">
+
+    {% for edu in education %}
+    <table class="resume-table">
+      <tr>
+        <td class="date-cell">
+          {% set _date = (edu.date | replace('\n',' ') | replace('\r',' ')) %}
+          {% if _date %}
+            {% set _start_date = _date.split('-')[0] if '-' in _date else _date %}
+            {{ _start_date }}
+          {% endif %}
+          {% if edu.duration %}<div class="duration">{{ edu.duration }}</div>{% endif %}
+        </td>
+        <td class="content-cell">
+          <div class="inst">{% if edu.institution %}{{ edu.institution }}{% endif %}</div>
+          {% if edu.degree %}<div class="degree">{{ edu.degree }}</div>{% endif %}
+          {% if edu.major or edu.honors %}
+          <div class="education-details">
+            {% if edu.honors %}{{ edu.honors }}{% endif %}
+            {% if edu.major and edu.honors %}<br>{% endif %}
+            {% if edu.major %}{{ edu.major }}{% endif %}
+          </div>
+          {% endif %}
+          {% if edu.coursework and edu.coursework|length %}
+          <div class="education-details">
+            Relevant coursework: {{ edu.coursework | join(", ") }}
+          </div>
+          {% endif %}
+        </td>
+        <td class="location-cell">
+          {% set _loc = (edu.location | replace('\n',' ') | replace('\r',' ')) %}
+          {% if _loc %}{{ _loc }}{% endif %}
+        </td>
+      </tr>
+    </table>
+    {% endfor %}
+  </div>
+
+  <!-- WORK EXPERIENCE -->
+  <div class="section">
+    <div class="section-title">EXPÉRIENCES PROFESSIONNELLES</div>
+    <hr class="hr">
+
+    {% for exp in experience %}
+    <table class="resume-table">
+      <tr>
+        <td class="date-cell">
+          {% set _date = (exp.date | replace('\n',' ') | replace('\r',' ')) %}
+          {% if _date %}
+            {% set _start_date = _date.split('-')[0] if '-' in _date else _date %}
+            {{ _start_date }}
+          {% endif %}
+          {% if exp.duration %}<div class="duration">{{ exp.duration }}</div>{% endif %}
+        </td>
+        <td class="content-cell">
+          <div class="company">{% if exp.company %}{{ exp.company }}{% endif %}</div>
+          {% if exp.position %}<div class="role">{{ exp.position }}</div>{% endif %}
+          {% if exp.bullets and exp.bullets|length %}
+          <ul class="bullets">
+            {% for point in exp.bullets %}
+            <li>{{ point }}</li>
+            {% endfor %}
+          </ul>
+          {% endif %}
+        </td>
+        <td class="location-cell">
+          {% set _loc = (exp.location | replace('\n',' ') | replace('\r',' ')) %}
+          {% if _loc %}{{ _loc }}{% endif %}
+        </td>
+      </tr>
+    </table>
+    {% endfor %}
+  </div>
+
+  <!-- LANGUAGES & IT SKILLS -->
+  <div class="section">
+    <div class="section-title">LANGUES & COMPÉTENCES</div>
+    <hr class="hr">
+
+    <div class="skills-section">
+      <table class="skills-table">
+        <tr>
+          <td class="skills-spacer"></td>
+          <td class="skills-content">
+            <ul class="skills-list">
+              {% if languages and languages|length %}
+              <li><span class="skills-label">Language:</span> {{ languages | join(", ") }}</li>
+              {% endif %}
+              {% if it_skills and it_skills|length %}
+              <li><span class="skills-label">IT:</span> {{ it_skills | join(", ") }}</li>
+              {% endif %}
+              {% if databases and databases|length %}
+              <li><span class="skills-label">Financial Databases:</span> {{ databases | join(", ") }}</li>
+              {% endif %}
+            </ul>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  {% if interests %}
+  <!-- ACTIVITIES & INTERESTS -->
+  <div class="section">
+    <div class="section-title">ACTIVITÉS & CENTRES D'INTÉRÊT</div>
+    <hr class="hr">
+
+    <div class="interests-section">
+      <table class="skills-table">
+        <tr>
+          <td class="skills-spacer"></td>
+          <td class="skills-content">
+            <ul class="interests-list">
+              {% for activity in interests %}
+              <li>{{ activity }}</li>
+              {% endfor %}
+            </ul>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  {% endif %}
+
+</body>
+
+</html>
