@@ -35,7 +35,7 @@ import os
 import openai
 from dotenv import load_dotenv
 
-from app.models import PageFillMetrics
+from .models import PageFillMetrics
 
 # Load OpenAI API key
 load_dotenv()

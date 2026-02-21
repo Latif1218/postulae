@@ -16,17 +16,19 @@ def ensure_dirs():
 ensure_dirs()
 
 def save_uploaded_file(file: UploadFile, folder: str, user_id: str) -> str:
-    ext = os.path.splitext(file.filename)[1] or ".pdf"
-    filename = f"{uuid4()}{ext}"
-    rel_path = f"{folder}/{user_id}/{filename}"
-    full_path = f"{UPLOAD_BASE}/{rel_path}"
+    """
+    Save uploaded file to 'folder/<user_id>/' and return full path.
+    """
+    # Ensure user folder exists
+    user_folder = os.path.join(folder, user_id)
+    os.makedirs(user_folder, exist_ok=True)
 
-    os.makedirs(os.path.dirname(full_path), exist_ok=True)
+    file_path = os.path.join(user_folder, file.filename)
 
-    with open(full_path, "wb") as buffer:
-        shutil.copyfileobj(file.file, buffer)
+    with open(file_path, "wb") as f:
+        f.write(file.file.read())
 
-    return rel_path
+    return file_path
 
 
 def save_bytes_file(content: bytes | BinaryIO, folder: str, user_id: str, ext: str = ".pdf") -> str:

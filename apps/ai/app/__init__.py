@@ -43,15 +43,15 @@ Standard Example (both languages at once):
     >>> pdf_en = results["en"].pdf_bytes
 """
 
-from app.generator import (
+from .generator import (
     generate_cv_from_pdf,
     generate_cv_from_data,
     generate_cv_phase1_from_pdf,
     generate_cv_phase2_from_pdf,
     CVGenerator,
 )
-from app.models import CVContent, CVGenerationResult, PageFillMetrics
-from app.density import DensityCalculator
+from .models import CVContent, CVGenerationResult, PageFillMetrics
+from .density import DensityCalculator
 
 __version__ = "2.3.0"
 __author__ = "Postulae"

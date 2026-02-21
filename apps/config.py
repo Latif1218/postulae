@@ -6,6 +6,7 @@ load_dotenv()
 
 SQLALCHEMY_DATABASE_URL = os.getenv("SQLALCHEMY_DATABASE_URL")
 JWT_SECRET_KEY = os.getenv("JWT_SECRET_KEY")
+OPENAI_API_KEY=os.getenv("OPENAI_API_KEY")
 
 
 EMAIL_HOST = os.getenv("EMAIL_HOST")
@@ -42,3 +43,4 @@ groq_client = OpenAI(
     api_key=os.getenv("GROQ_API_KEY"),
     base_url="https://api.groq.com/openai/v1",
 )
+

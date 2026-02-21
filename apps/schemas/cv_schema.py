@@ -5,7 +5,7 @@ from typing import List, Dict, Optional, Any
 
 class CVEvaluationResponse(BaseModel):
     score: int
-    colore: str
+    color: str
     tips: List[str]
     cta: str
 

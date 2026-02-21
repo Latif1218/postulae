@@ -24,9 +24,8 @@ class CV(Base):
 
 
 
-class CVFrom(Base):
-    __tablename__ = "cv_from"
-
+class CVForm(Base):   
+    __tablename__ = "cv_forms"   
     id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
     user_id = Column(UUID(as_uuid=True), ForeignKey("users.id"), nullable=False)
     personal_details = Column(JSON)

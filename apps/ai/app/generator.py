@@ -31,12 +31,12 @@ import os
 from typing import Dict, List, Optional, Tuple
 from copy import deepcopy
 
-from app.models import CVContent, CVGenerationResult, PageFillMetrics
-from app.llm_client import extract_text_from_pdf_bytes, generate_cv_content
-from app.density import DensityCalculator
-from app.layout import LayoutEngine
-from app.enrichment import ContentEnricher
-from app.content_analyzer import ContentAnalyzer
+from .models import CVContent, CVGenerationResult, PageFillMetrics
+from .llm_client import extract_text_from_pdf_bytes, generate_cv_content
+from .density import DensityCalculator
+from .layout import LayoutEngine
+from .enrichment import ContentEnricher
+from .content_analyzer import ContentAnalyzer
 
 
 class CVGenerator:

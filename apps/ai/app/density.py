@@ -9,7 +9,7 @@ from typing import Tuple
 
 import pdfplumber
 
-from app.models import PageFillMetrics
+from .models import PageFillMetrics
 
 
 class DensityCalculator:

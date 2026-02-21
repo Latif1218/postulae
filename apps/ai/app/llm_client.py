@@ -8,15 +8,15 @@ import os
 import re
 from typing import Dict, Optional
 from pathlib import Path
-
+from apps.config import OPENAI_API_KEY
 import openai
-from dotenv import load_dotenv
+# from dotenv import load_dotenv
 
 # Import bullet trimmer
 from .bullet_trimmer import trim_cv_bullets, validate_bullet_lengths
 
-load_dotenv()
-openai.api_key = os.getenv("OPENAI_API_KEY")
+# load_dotenv()
+openai.api_key = OPENAI_API_KEY
 
 # Load prompts from files
 PROMPTS_DIR = Path(__file__).parent / "prompts"
