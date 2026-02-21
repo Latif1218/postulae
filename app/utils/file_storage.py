@@ -1,0 +1,54 @@
+import os
+import shutil
+from fastapi import UploadFile
+from typing import BinaryIO
+from uuid import uuid4
+
+
+
+UPLOAD_BASE = "uploads"
+
+
+def ensure_dirs():
+    for folder in ["cv", "generated", "cover", "reviews"]:
+        os.makedirs(f"{UPLOAD_BASE}/{folder}", exist_ok=True)
+
+ensure_dirs()
+
+def save_uploaded_file(file: UploadFile, folder: str, user_id: str) -> str:
+    ext = os.path.splitext(file.filename)[1] or ".pdf"
+    filename = f"{uuid4()}{ext}"
+    rel_path = f"{folder}/{user_id}/{filename}"
+    full_path = f"{UPLOAD_BASE}/{rel_path}"
+
+    os.makedirs(os.path.dirname(full_path), exist_ok=True)
+
+    with open(full_path, "wb") as buffer:
+        shutil.copyfileobj(file.file, buffer)
+
+    return rel_path
+
+
+def save_bytes_file(content: bytes | BinaryIO, folder: str, user_id: str, ext: str = ".pdf") -> str:
+    filename = f"{uuid4()}{ext}"
+    rel_path = f"{folder}/{user_id}/{filename}"
+    full_path = f"{UPLOAD_BASE}/{rel_path}"
+
+    os.makedirs(os.path.dirname(full_path),exist_ok=True)
+
+    if isinstance(content, bytes):
+        with open(full_path, "wb") as f:
+            f.write(content)
+    else: 
+        with open(full_path, "wb") as f:
+            shutil.copyfileobj(content, f)
+
+    return rel_path
+
+
+
+
+def get_file_url(rel_path: str) -> str:
+    # Local dev: http://localhost:8000/uploads/...
+    # Production: https://yourdomain.com/uploads/... (Nginx/Static serve)
+    return f"/{UPLOAD_BASE}/{rel_path}"

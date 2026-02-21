@@ -1,5 +1,6 @@
 from sqlalchemy import Column, String, Boolean, TIMESTAMP, text, DateTime, Integer
 from datetime import datetime
+from sqlalchemy.orm import relationship
 from ..database import Base
 from sqlalchemy.dialects.postgresql import UUID
 import uuid
@@ -22,3 +23,9 @@ class User(Base):
     created_at = Column(TIMESTAMP(timezone=True), nullable=False, server_default=text('now()'))
     updated_at = Column(DateTime(timezone=True), nullable=True, onupdate=datetime.utcnow)
     
+
+
+
+    cvs = relationship("CV", back_populates="user", cascade="all, delete")
+    cv_forms = relationship("CVForm", back_populates="user", cascade="all, delete")
+    cover_letters = relationship("CoverLetter", back_populates="user", cascade="all, delete")
